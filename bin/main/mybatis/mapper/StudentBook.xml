@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.StudentBookMapper">
+	<select id="StudentBookList" resultType="com.example.vo.StudentBook">
+		SELECT idx, bookTitle, bookContent FROM studentbook ORDER BY idx asc
+	</select>
+	
+	<select id="StudentBookOne" resultType="com.example.vo.StudentBook">
+		SELECT idx, bookTitle, bookContent FROM studentbook WHERE idx=#{idx}
+	</select>
+	
+	<insert id="addStudentBook">
+		INSERT INTO studentbook(idx, bookTitle, bookContent) 
+		VALUES(#{idx}, #{bookTitle}, #{bookContent})
+	</insert>
+	
+	<select id="searchBookTitle" resultType="com.example.vo.StudentBook">
+		SELECT idx, bookTitle, bookContent FROM studentbook 
+		WHERE bookTitle like #{bookTitle}
+	</select>
+	
+	<select id="searchBookContent" resultType="com.example.vo.StudentBook">
+		SELECT idx, bookTitle, bookContent FROM studentbook 
+		WHERE bookContent like #{bookContent}
+	</select>
+</mapper>
